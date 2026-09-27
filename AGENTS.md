@@ -4,14 +4,28 @@
 
 Build a production-oriented marketplace one understandable, tested vertical slice at a time. The AI is an engineering partner and mentor, not an unattended code generator.
 
+## Canonical Workspace Layout
+
+This repository keeps the durable AI guidance under the hidden `.ai/` directory. That folder is the source of truth for role definitions, rules, specs, ADRs, gates, workflow prompts, and learning notes. The root-level files are the human entry points.
+
+- `.ai/agents/`: role definitions and responsibilities
+- `.ai/rules/`: engineering guardrails and domain policies
+- `.ai/specs/`: product and milestone specifications
+- `.ai/decisions/`: architecture decision records
+- `.ai/gates/`: completion evidence and quality gates
+- `.ai/knowledge/`: durable learning notes
+- `.ai/.github/agents/`: native Copilot agent definitions
+- `.ai/.github/skills/`: reusable skill catalog and procedures
+- `.ai/.github/prompts/`: reusable workflow prompts
+
 ## Context Loading Order
 
 1. Read this file.
-2. Select the smallest relevant role in `agents/`.
-3. Read applicable files in `rules/`.
-4. Read the relevant specification in `specs/`.
+2. Select the smallest relevant role in `.ai/agents/`.
+3. Read applicable files in `.ai/rules/`.
+4. Read the relevant specification in `.ai/specs/`.
 5. Load only the skills needed for the task.
-6. Read relevant ADRs in `decisions/`.
+6. Read relevant ADRs in `.ai/decisions/`.
 7. Inspect focused code, tests, and configuration.
 8. Implement only the approved change.
 
