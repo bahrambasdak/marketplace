@@ -1,7 +1,7 @@
 # Workspace Instructions
 
-The authoritative project contract is in `/AGENTS.md`. Read it first for every task. Then load only the relevant role under `/.ai/agents`, rules under `/.ai/rules`, specifications under `/.ai/specs`, ADRs under `/.ai/decisions`, skills under `/.ai/.github/skills`, and prompts under `/.ai/.github/prompts`.
+Read the authoritative project contract in [AGENTS.md](../../AGENTS.md) first for every task. Load only the relevant role under [`.ai/agents`](../agents), rules under [`.ai/rules`](../rules), specifications under [`.ai/specs`](../specs), ADRs under [`.ai/decisions`](../decisions), skills under [`.ai/.github/skills`](skills), and prompts under [`.ai/.github/prompts`](prompts).
 
-This repository is in foundation planning. Do not implement marketplace behavior, install dependencies, or create runtime application code unless the relevant specification and architecture decisions have been approved.
+The repository is still governed by approved specifications and architecture decisions. Do not implement marketplace behavior, install dependencies, or create runtime application code beyond approved scope. Treat the existing Next.js page as scaffolding until the relevant spec authorizes product behavior.
 
-Use risk-based Learning Mode, focused context, small reversible changes, and executable validation. Never claim checks passed without running them.
+Use risk-based Learning Mode for architecture, data, authorization, security, performance, payments, and new major dependencies. Use focused context, small reversible changes, and executable validation. Never claim checks passed without running them; currently use `pnpm lint`, `pnpm build`, and `pnpm exec tsc --noEmit` as applicable because no test script is configured yet.

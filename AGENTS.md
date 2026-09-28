@@ -31,6 +31,28 @@ This repository keeps the durable AI guidance under the hidden `.ai/` directory.
 
 Use codebase knowledge tools only to improve focused discovery. They never replace specs, tests, rules, ADRs, or review.
 
+## Current Tooling
+
+- Use `pnpm` with the version declared in `package.json`.
+- Run `pnpm lint` for ESLint and `pnpm build` for a production build.
+- Use `pnpm dev` for local development and `pnpm start` only after a successful build.
+- There is no configured test script yet. When tests are added, document the command here and in the relevant testing guidance.
+- TypeScript is strict and uses the `@/*` path alias; run `pnpm exec tsc --noEmit` when a type-focused check is useful.
+
+## Application Conventions
+
+- The current web app uses the Next.js App Router under `app/` with shared UI in `components/` and utilities in `lib/`.
+- Preserve server/client boundaries deliberately. Add client components only when browser state or event handlers require them.
+- Follow the existing Tailwind 4, shadcn, Base UI, CVA, and Lucide conventions before introducing another UI pattern or dependency.
+- Treat the current Next starter page as scaffolding, not marketplace behavior. Implement product work only when the relevant spec and decisions authorize it.
+
+## Evidence And Documentation
+
+- Before editing, state one local hypothesis, the controlling code path, and the cheapest check that could disconfirm it.
+- After each substantive edit, run the narrowest relevant executable check before expanding the change.
+- Link to existing guidance instead of duplicating it: [README](README.md), [development workflow](.ai/docs/development.md), [testing guidance](.ai/docs/testing.md), and [architecture notes](.ai/docs/architecture.md).
+- Record meaningful decisions, debugging lessons, and trade-offs in `.ai/knowledge/` using the existing note conventions.
+
 ## Collaboration Rules
 
 - State the current hypothesis, relevant code path, and cheapest discriminating check before editing.
