@@ -208,7 +208,9 @@ a {
   color: #d2ddd6;
   font-size: 13px;
   font-weight: 520;
-  transition: background-color 160ms ease, color 160ms ease;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
 .sidebar-link svg {
@@ -456,7 +458,19 @@ a {
   margin: auto;
   border: 1px solid rgb(41 77 61 / 13%);
   background-color: #d7e2d7;
-  background-image: linear-gradient(90deg, transparent 49.8%, rgb(45 78 61 / 8%) 50%, transparent 50.2%), linear-gradient(0deg, transparent 49.8%, rgb(45 78 61 / 8%) 50%, transparent 50.2%);
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 49.8%,
+      rgb(45 78 61 / 8%) 50%,
+      transparent 50.2%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.8%,
+      rgb(45 78 61 / 8%) 50%,
+      transparent 50.2%
+    );
   background-size: 48px 48px;
 }
 

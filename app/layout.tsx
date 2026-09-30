@@ -25,13 +25,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans")}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+      )}
     >
       <body className="min-h-full">
         <div className="app-shell">
           <aside className="desktop-sidebar" aria-label="Primary sidebar">
             <Link className="brand-link" href="/">
-              <span className="brand-mark"><Store aria-hidden="true" /></span>
+              <span className="brand-mark">
+                <Store aria-hidden="true" />
+              </span>
               <span>marketplace</span>
             </Link>
             <div className="sidebar-section-label">Workspace</div>
@@ -59,7 +67,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 </summary>
                 <div className="mobile-menu-panel">
                   <Link className="brand-link" href="/">
-                    <span className="brand-mark"><Store aria-hidden="true" /></span>
+                    <span className="brand-mark">
+                      <Store aria-hidden="true" />
+                    </span>
                     <span>marketplace</span>
                   </Link>
                   <nav aria-label="Mobile navigation">
@@ -72,12 +82,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               </details>
               <div className="topbar-title">
                 <span className="topbar-kicker">Marketplace</span>
-                <span className="topbar-divider" aria-hidden="true">/</span>
+                <span className="topbar-divider" aria-hidden="true">
+                  /
+                </span>
                 <span className="topbar-current">Home</span>
               </div>
-              <span className="preview-label"><span className="status-dot" aria-hidden="true" /> Preview</span>
+              <span className="preview-label">
+                <span className="status-dot" aria-hidden="true" /> Preview
+              </span>
             </header>
-            <main id="main-content" className="app-main">{children}</main>
+            <main id="main-content" className="app-main">
+              {children}
+            </main>
           </div>
         </div>
       </body>
