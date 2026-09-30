@@ -21,13 +21,13 @@ Every meaningful feature moves from requirement to specification, design, implem
 - [.ai/decisions/](.ai/decisions/) contains architectural decisions.
 - [.ai/agents/](.ai/agents/), [.ai/rules/](.ai/rules/), and [.ai/specs/](.ai/specs/) define the AI-assisted workflow.
 - [.ai/gates/](.ai/gates/) defines completion evidence.
-- [.ai/.github/prompts/](.ai/.github/prompts/) contains reusable workflow prompts.
+- [.github/prompts/](.github/prompts/) contains reusable workflow prompts.
 - [.ai/knowledge/](.ai/knowledge/) stores durable learning notes.
 - [.ai/docs/](.ai/docs/) contains project documentation.
 
 ## Workflow catalog
 
-The canonical reusable workflows are implemented under [.ai/.github/prompts/](.ai/.github/prompts/).
+The canonical reusable workflows are implemented under [.github/prompts/](.github/prompts/).
 
 Available workflows include feature planning, design, implementation, testing, review, debugging, security review, performance review, learning, refactoring, ADRs, and feature completion.
 
@@ -44,7 +44,7 @@ A passing build is only one piece of evidence.
 
 ## Skills
 
-The canonical human-readable skill catalog is implemented under [.ai/.github/skills/](.ai/.github/skills/).
+The canonical human-readable skill catalog is implemented under [.github/skills/](.github/skills/).
 
 Each skill is an on-demand procedure with a trigger, inputs, steps, outputs, quality checks, and learning guidance. Agents should compose these skills rather than duplicate their procedures.
 

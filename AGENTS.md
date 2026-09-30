@@ -6,7 +6,7 @@ Build a production-oriented marketplace one understandable, tested vertical slic
 
 ## Canonical Workspace Layout
 
-This repository keeps the durable AI guidance under the hidden `.ai/` directory. That folder is the source of truth for role definitions, rules, specs, ADRs, gates, workflow prompts, and learning notes. The root-level files are the human entry points.
+This repository keeps durable project guidance under the hidden `.ai/` directory. Root `.github/` is the only `.github` directory and contains native Copilot customizations discovered by the tools; those files use the project guidance in `.ai/`.
 
 - `.ai/agents/`: role definitions and responsibilities
 - `.ai/rules/`: engineering guardrails and domain policies
@@ -14,9 +14,9 @@ This repository keeps the durable AI guidance under the hidden `.ai/` directory.
 - `.ai/decisions/`: architecture decision records
 - `.ai/gates/`: completion evidence and quality gates
 - `.ai/knowledge/`: durable learning notes
-- `.ai/.github/agents/`: native Copilot agent definitions
-- `.ai/.github/skills/`: reusable skill catalog and procedures
-- `.ai/.github/prompts/`: reusable workflow prompts
+- `.github/agents/`: native Copilot agent definitions
+- `.github/skills/`: reusable Copilot skills and procedures
+- `.github/prompts/`: reusable workflow prompts
 
 ## Context Loading Order
 
