@@ -619,34 +619,36 @@ a {
     display: block;
   }
 
-  .mobile-navigation summary {
+  .mobile-navigation-toggle {
     width: 36px;
     height: 36px;
     display: grid;
     place-items: center;
+    padding: 0;
     border: 1px solid var(--shell-line);
     border-radius: 6px;
+    background: transparent;
     color: #344a3e;
     cursor: pointer;
-    list-style: none;
   }
 
-  .mobile-navigation summary::-webkit-details-marker {
-    display: none;
+  .mobile-navigation-toggle:focus-visible {
+    outline: 2px solid var(--shell-accent);
+    outline-offset: 2px;
   }
 
-  .mobile-navigation summary svg {
+  .mobile-navigation-toggle svg {
     width: 17px;
     height: 17px;
   }
 
-  .close-icon,
-  .mobile-navigation[open] .menu-icon {
+  .mobile-navigation-toggle[aria-expanded="false"] .close-icon,
+  .mobile-navigation-toggle[aria-expanded="true"] .menu-icon {
     display: none;
   }
 
-  .mobile-navigation[open] .close-icon {
-    display: block;
+  .mobile-menu-panel[hidden] {
+    display: none;
   }
 
   .mobile-menu-panel {

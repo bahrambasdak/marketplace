@@ -58,17 +58,18 @@ The following decisions require a separate ADR when they affect architectural bo
 
 - Monorepo package manager and task runner.
 - Frontend framework and rendering model.
+- Backend runtime and API style.
+- PostgreSQL access layer and migration approach.
 - Validation and shared contract strategy.
 - Authentication and session strategy.
 - Test runner and browser-testing approach.
-- Production hosting and deployment boundary.
+- Local infrastructure and eventual deployment boundary.
+- Module boundary strategy for the first catalog slice: single deployment vs. separate web/API packages.
 - Product data model and publication lifecycle for public catalog reads.
 - Money, image, and optional field representation for catalog content.
 - Error and response semantics for public catalog endpoints.
 
 Each ADR should record the decision, the context, the alternatives considered, and the consequences for future implementation.
-
-The initial deployment, REST route-handler, PostgreSQL, Prisma, and local Docker Compose direction is recorded in [ADR-0002](../decisions/0002-catalog-runtime-and-data-access.md).
 
 ## Design Direction For The First Slice
 
