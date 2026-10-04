@@ -21,7 +21,6 @@
 # production
 /build
 dist/
-/generated/
 
 # misc
 .DS_Store
