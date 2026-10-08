@@ -59,7 +59,7 @@ The following decisions require a separate ADR when they affect architectural bo
 - Monorepo package manager and task runner.
 - Frontend framework and rendering model.
 - Backend runtime and API style.
-- PostgreSQL access layer and migration approach.
+- PostgreSQL access layer and migration approach (resolved for the initial catalog in [ADR-0002](../decisions/0002-catalog-runtime-and-data-access.md)).
 - Validation and shared contract strategy.
 - Authentication and session strategy.
 - Test runner and browser-testing approach.

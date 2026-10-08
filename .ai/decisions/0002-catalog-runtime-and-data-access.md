@@ -1,12 +1,12 @@
 # ADR-0002: Catalog Runtime And Data Access
 
-- Status: Proposed
-- Date: 2026-10-03
+- Status: Accepted
+- Date: 2026-10-08
 - Review trigger: Before installing database dependencies, adding migrations, or implementing catalog routes and pages.
 
 ## Context
 
-The repository currently contains a Next.js App Router application with a static placeholder page, but no API, database connection, migrations, or configured test runner. The foundation spec is Draft and requires architecture decisions before product work. The project documentation describes separate web/API/shared package boundaries, while the foundation spec leaves a single deployment versus separate packages open. The developer selected PostgreSQL with Prisma, one Next.js deployment for REST endpoints, and Docker Compose for local PostgreSQL. The first product surface is a public single-vendor catalog listing and detail pages.
+At the time of this decision, the repository contained a Next.js App Router application with a static placeholder page, but no API, database connection, migrations, or configured test runner. The foundation spec is Draft and requires architecture decisions before product work. The project documentation described separate web/API/shared package boundaries, while the foundation spec left a single deployment versus separate packages open. The developer selected PostgreSQL with Prisma, one Next.js deployment for REST endpoints, and Docker Compose for local PostgreSQL. The first product surface is a public single-vendor catalog listing and detail pages.
 
 ## Problem
 
@@ -28,7 +28,7 @@ Keep the same deployment boundary as Option A, but use a PostgreSQL driver and e
 
 ## Decision
 
-Propose Option A for the first catalog slice:
+Adopt Option A for the first catalog slice:
 
 - Deploy the web application and REST route handlers together in the existing Next.js application.
 - Keep domain/application and persistence code in server-only modules; route handlers and server-rendered pages call the same catalog services directly. Do not make internal HTTP requests from pages to the co-located API.
@@ -43,7 +43,7 @@ This ADR does not decide the catalog schema, product fields, publication lifecyc
 
 - One local application and database are sufficient to run the first vertical slice.
 - Pages and REST handlers can share application rules without coupling presentation code directly to Prisma.
-- Prisma introduces a production dependency and migration workflow, so dependency installation and schema changes remain blocked until this ADR is accepted.
+- Prisma introduces a production dependency and migration workflow. The initial local setup is authorized by this ADR; catalog-specific schema changes still require an approved catalog specification.
 - The architecture documentation's separate-package direction must be reconciled when this ADR is accepted; later extraction remains possible if supported by concrete requirements.
 - Docker Compose supports reproducible local development only; production hosting, credentials, backups, and deployment topology remain future decisions.
 - Before writing Next.js code, consult the version-matched guides under `node_modules/next/dist/docs/` as required by the repository contract.
