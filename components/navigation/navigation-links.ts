@@ -1,4 +1,4 @@
-import { House } from "lucide-react";
+import { House, LayoutGrid } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export type NavigationLink = {
@@ -14,6 +14,12 @@ export const navigationLinks = [
     label: "Home",
     href: "/",
     icon: House,
+  },
+  {
+    id: "products",
+    label: "products",
+    href: "/products",
+    icon: LayoutGrid,
   },
 ] satisfies readonly NavigationLink[];
 
