@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
-export function GET({ id }: { id: string }) {
+export async function GET({ id }: { id: string }) {
 
-    const product = prisma.product.findUnique({
+    const product = await prisma.product.findUnique({
         where: {
             id: id,
         },
@@ -14,3 +14,18 @@ export function GET({ id }: { id: string }) {
     },
   });
 }
+
+
+export async function POST ({ request }: { request: Request }) {
+    const data = await request.json();
+    const product = prisma.product.create({
+        data: data
+    });
+    return new Response(JSON.stringify(product), {
+            status: 201,
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+    }
+
