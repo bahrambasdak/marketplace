@@ -2,22 +2,18 @@ import { ProductsData } from "@/app/productsData";
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-
-
 export async function GET(
-  request: NextRequest,
+  request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
-  // const product = await prisma.product.findUnique({
-  //     where: {
-  //         id: id,
-  //     },
-  // });
-
   const { id } = await params;
+  const product = ProductsData.find((p) => p.id === id);
 
+  if (!product) {
+    return NextResponse.json({ error: "Product not found" }, { status: 404 });
+  }
 
-  const reponse = NextResponse.json(ProductsData.find((p) => p.id === parseInt(id)), {
+  const reponse = NextResponse.json(product, {
     status: 200,
     headers: {
       "Content-Type": "application/json",
@@ -25,5 +21,3 @@ export async function GET(
   });
   return reponse;
 }
-
-

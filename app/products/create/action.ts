@@ -17,7 +17,7 @@ export async function createProduct(
     headers: {
       "Content-Type": "application/json"
       },
-      body: JSON.stringify({...data,id:Math.floor(Math.random() * 1000)}),
+      body: JSON.stringify({...data,id:String(Math.floor(Math.random() * 1000))}),
     });
 
     if (response.ok) {
