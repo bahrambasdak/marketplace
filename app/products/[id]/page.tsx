@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { notFound } from "next/navigation";
 
 export default async function ProductPage({
@@ -19,6 +20,7 @@ export default async function ProductPage({
       return notFound();
     }
     const productData = await response.json();
+    await new Promise((resolve) => setTimeout(resolve, 5000));
     return productData;
   }
 
@@ -40,11 +42,11 @@ console.log(productData , id);
           Details about the product will be displayed here.{productData?.title}
         </p>
 
-          <h2>title{productData?.title}</h2>
-          <p>description{productData?.description}</p>
+          <h2>title : {productData?.title}</h2>
+          <p>description : {productData?.description}</p>
           <p>Price: ${productData?.price}</p>
       </div>
-      <button >Log Product </button>
+      <Button>Log</Button>
     </section>
   );
 }
