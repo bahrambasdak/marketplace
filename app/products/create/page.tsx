@@ -1,22 +1,24 @@
-
 "use client";
- import { useActionState } from "react";
+import { useActionState } from "react";
 import { createProduct } from "./action";
 
 export default function CreateProductPage() {
   const initialState = {
     title: "",
     description: "",
-    price: 0,
+    slug: "",
+    categoryId: "",
   };
-const [state, formAction, pending] = useActionState(createProduct, initialState);
- 
+  const [state, formAction, pending] = useActionState(
+    createProduct,
+    initialState,
+  );
+
   return (
     <form
       className="create-product-page"
       aria-labelledby="create-product-title"
       action={formAction}
-
     >
       <div className="page-heading">
         <div className="page-eyebrow">
@@ -25,6 +27,7 @@ const [state, formAction, pending] = useActionState(createProduct, initialState)
         <h1 id="create-product-title">Create New Product</h1>
         <p>Fill in the details to create a new product.</p>
       </div>
+
       <input
         className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
         type="text"
@@ -39,9 +42,15 @@ const [state, formAction, pending] = useActionState(createProduct, initialState)
       />
       <input
         className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        type="number"
-        placeholder="Product Price"
-        name="price"
+        type="text"
+        placeholder="slug"
+        name="slug"
+      />
+      <input
+        className="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        type="text"
+        placeholder="Product categoryId"
+        name="categoryId"
       />
       <button
         className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

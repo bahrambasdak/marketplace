@@ -1,15 +1,15 @@
 "use server"
 
+import { Product } from "@/app/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createProduct(
-  _previousState: { title: string; description: string; price: number },
+  _previousState: Product,
   formData: FormData,
 ) {
   // Implementation for creating a new product
   const data = Object.fromEntries(formData);
-  console.log(data);
 
   
   const response = await fetch("http://localhost:3000/api/products", {

@@ -20,7 +20,7 @@ export default async function ProductPage({
       return notFound();
     }
     const productData = await response.json();
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    // await new Promise((resolve) => setTimeout(resolve, 5000));
     return productData;
   }
 
