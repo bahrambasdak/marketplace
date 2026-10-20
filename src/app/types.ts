@@ -38,6 +38,7 @@ export interface Product {
   id: string;
   title: string;
   slug: string;
+  price: number;
   description: string;
   createdAt: string;
   updatedAt: string;

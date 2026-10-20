@@ -1,6 +1,6 @@
-import { ProductsData } from "@/app/productsData";
-import { Product } from "@/app/types";
-import { prisma } from "@/lib/prisma";
+import { ProductsData } from "@/src/app/productsData";
+import { Product } from "@/src/app/types";
+import { prisma } from "@/src/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const productData = await request.json() as Product;
+  const productData = (await request.json()) as Product;
 
   // await prisma.user.create({
   //   data: {
@@ -32,4 +32,3 @@ export async function POST(request: NextRequest) {
     },
   });
 }
-
