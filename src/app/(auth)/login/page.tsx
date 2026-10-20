@@ -5,7 +5,7 @@ export default function LoginPage() {
     return(
         <div>
             <h1>Login</h1>
-            <form>
+            <form action="/api/login" method="POST">
                 <input type="email" name="email" placeholder="Email" />
                 <input type="password" name="password" placeholder="Password" />
                 <button type="submit">Login</button>

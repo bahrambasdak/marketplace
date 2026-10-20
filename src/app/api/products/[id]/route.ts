@@ -1,5 +1,5 @@
-import { ProductsData } from "@/app/productsData";
-import { prisma } from "@/lib/prisma";
+import { ProductsData } from "@/src/app/productsData";
+import { prisma } from "@/src/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

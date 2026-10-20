@@ -1,3 +1,4 @@
+import { ProductList } from "@/src/features/products";
 import Link from "next/link";
 
 export default async function ProductsPage() {
@@ -8,17 +9,7 @@ export default async function ProductsPage() {
   return (
     <div className="flex flex-col gap-4">
       <h1>Products Page</h1>
-      <ul className="flex flex-col gap-4">
-        {products.map((product) => (
-            <Link key={product.id} href={`/products/${product.id}`} className="block p-4 border rounded-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <li key={product.id}>
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-            <p>Price: ${product.price}</p>
-          </li>
-          </Link>
-        ))}
-      </ul>
+      <ProductList />
 
       <Link
         href="/products/create"
