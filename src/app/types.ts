@@ -37,12 +37,13 @@ export interface Listing {
 export interface Product {
   id: string;
   title: string;
-  slug: string;
   price: number;
   description: string;
-  createdAt: string;
-  updatedAt: string;
   categoryId: string;
+  storeId: string;
   images: ProductImage[];
   variants: ProductVariant[];
 }
+
+
+

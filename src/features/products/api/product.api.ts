@@ -1,19 +1,20 @@
-import { Product } from "@prisma/client";
+import { Product } from "@/src/app/types";
+import { apiClient } from "@/src/lib/axios/client";
 
 export async function getProducts(): Promise<Product[]> {
-  const response = await fetch(`http://localhost:3000/api/products`);
+  const response = await apiClient.get("/products");
   if (!response.ok) {
     throw new Error("Failed to fetch products");
   }
-  return response.json();
+  return response.data;
 }
 
 export async function getProduct(id: string): Promise<Product> {
-  const response = await fetch(`http://localhost:3000/api/products/${id}`);
+  const response = await apiClient.get(`/products/${id}`);
   if (!response.ok) {
     throw new Error("Failed to fetch product");
   }
-  return response.json();
+  return response.data;
 }
 
 
