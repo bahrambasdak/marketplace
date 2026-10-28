@@ -1,34 +1,23 @@
-import { createUser } from "@/src/features/auth/api/user.api";
+"use client";
+import { useActionState } from "react";
+import { loginAction } from "../../actions";
 
 export function LoginForm() {
-  async function loginAction(formData: FormData) {
-    "use server";
+  const initialFormState = { email: "", password: "" };
 
-    const email = String(formData.get("email") ?? "").trim();
-    const password = String(formData.get("password") ?? "");
-    const name = String(formData.get("name") ?? "").trim();
-
-    // if (!email || !password || !name) {
-    //   throw new Error("Email, password, and name are required.");
-    // }
-
-    await fetch("http://localhost:3000/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-        name,
-      }),
-    });
-  }
+  const [, formAction, isPending] = useActionState(
+    async (currentState: typeof initialFormState, formData: FormData) => {
+      const res = await loginAction(formData);
+      console.log(res);
+      return currentState;
+    },
+    initialFormState,
+  );
 
   return (
     <div>
       <h1>Login</h1>
-      <form action={loginAction} className="flex flex-col gap-4">
+      <form action={formAction} className="flex flex-col gap-4">
         <input
           type="text"
           name="email"
@@ -44,18 +33,12 @@ export function LoginForm() {
           className="border border-gray-300 rounded px-4 py-2"
           autoComplete="current-password"
         />
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          className="border border-gray-300 rounded px-4 py-2"
-          autoComplete="name"
-        />
         <button
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded"
+          disabled={isPending}
         >
-          Submit
+          {isPending ? "loging......" : "Submit"}
         </button>
       </form>
     </div>
