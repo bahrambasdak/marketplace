@@ -1,13 +1,13 @@
 "use client";
 import { useActionState } from "react";
-import { loginAction } from "../actions";
+import { signInAction } from "../actions";
 
 export function SignInForm() {
   const initialFormState = { email: "", password: "" };
 
   const [, formAction, isPending] = useActionState(
     async (currentState: typeof initialFormState, formData: FormData) => {
-      const res = await loginAction(formData);
+      const res = await signInAction(formData);
       console.log(res);
       return currentState;
     },
