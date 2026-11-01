@@ -1,3 +1,16 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  role: string;
+  stores: Store[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+
+
 export interface Category {
   id: string;
   name: string;
@@ -44,6 +57,20 @@ export interface Product {
   images: ProductImage[];
   variants: ProductVariant[];
 }
+
+
+export interface Store {
+  id: string;
+  name: string;
+  slug: string;
+  description?: string;
+  createAt: Date;
+  updateAt: Date;
+  ownerId: string;
+  owner: User;
+  listings: Listing[];
+}
+
 
 
 
