@@ -15,7 +15,7 @@ export default async function ProductPage({
           <span className="eyebrow-rule" /> PRODUCT PAGE
         </div>
 
-        <ProductDetails id={id} />
+        {/* <ProductDetails id={id} /> */}
       </div>
       <Button>Log</Button>
     </section>

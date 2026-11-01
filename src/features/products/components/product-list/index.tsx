@@ -7,9 +7,9 @@ export async function ProductList() {
   if (!products) return notFound();
   return (
     <div className= "flex flex-wrap gap-4">
-      {products.map((product) => (
+      {products.length> 0 ? products?.map((product) => (
         <ProductCard product={product} key={product.id} />
-      ))}
+      )):<p>no product</p>}
     </div>
   );
 }

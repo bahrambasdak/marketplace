@@ -9,7 +9,7 @@ export default async function ProductsPage() {
   return (
     <div className="flex flex-col gap-4">
       <h1>Products Page</h1>
-      <ProductList />
+      {/* <ProductList /> */}
 
       <Link
         href="/products/create"

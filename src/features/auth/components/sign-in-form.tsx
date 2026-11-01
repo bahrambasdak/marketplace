@@ -34,7 +34,6 @@ export function SignInForm({ callbackUrl }: SignInFormProps) {
     control,
     register,
     handleSubmit,
-    setError,
     formState: { errors, isSubmitting },
   } = useForm<SignInInput>({
     resolver: zodResolver(signInSchema),
@@ -48,26 +47,17 @@ export function SignInForm({ callbackUrl }: SignInFormProps) {
 
   const onSubmit = handleSubmit(async (values) => {
     setServerError(null);
-    const result = await signInAction(values, callbackUrl);
-
-    if (!result?.ok) {
-      for (const [field, messages] of Object.entries(
-        result?.fieldErrors ?? {},
-      )) {
-        const message = messages?.[0];
-        if (message && field in values) {
-          setError(field as keyof SignInInput, { type: "server", message });
-        }
+    const formData = new FormData();
+    for (const [field, value] of Object.entries(values)) {
+      if (value !== undefined) {
+        formData.append(field, String(value));
       }
-      setServerError(
-        result?.code === "SERVICE_UNAVAILABLE"
-          ? result.message ?? text.genericError
-          : text.genericError,
-      );
-      return;
     }
+    const result = await signInAction(values, formData);
 
-    window.location.assign(result.redirectTo);
+    if (typeof result === "string") {
+      setServerError(result);
+    }
   });
 
   const text = {
