@@ -1,42 +1,26 @@
-"use server";
-
-import { SignInput, signInSchema } from "./schemas";
-const GENERIC_AUTH_ERROR =
-  "We could not complete that request. Check your details and try again."
-export type AuthActionResult =
-  | { ok: true; redirectTo: string }
-  | {
-      ok: false
-      message: string
-      code?: "SERVICE_UNAVAILABLE"
-      fieldErrors?: Record<string, string[] | undefined>
+'use server';
+ 
+import { signIn } from '@/src/auth';
+import { AuthError } from 'next-auth';
+import { SignInInput } from './schemas';
+ 
+// ...
+ 
+export async function signInAction(
+  prevState: SignInInput,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
     }
-
-export async function signInAction(input:SignInput):Promise<AuthActionResult> {
-    const parsed = signInSchema.safeParse(input)
-      if (!parsed.success) {
-    return {
-      ok: false,
-      message: GENERIC_AUTH_ERROR,
-      fieldErrors: parsed.error.flatten().fieldErrors,
-    }
+    throw error;
   }
-
-
-  if (!parsed.data.email || !parsed.data.password) {
-    throw new Error("Email, password, and name are required.");
-  }
-
-  const res = await fetch("http://localhost:3000/api/login", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email:parsed.data.email,
-      password:parsed.data.password,
-    }),
-  });
-  return res.json()
-  
 }

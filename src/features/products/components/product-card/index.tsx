@@ -1,4 +1,4 @@
-import { Product } from "@/src/app/types";
+import { Product } from "@/src/types";
 import Image from "next/image";
 
 export default function ProductCard({ product }: { product: Product }) {

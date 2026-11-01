@@ -1,6 +1,6 @@
 "use server";
 
-import { Product } from "@/src/app/types";
+import { Product } from "@/src/types";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
