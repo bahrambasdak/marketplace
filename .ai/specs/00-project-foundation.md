@@ -23,7 +23,7 @@ Future feature work needs consistent boundaries, durable decisions, repeatable q
 
 ## Out Of Scope
 
-- Marketplace pages, APIs, database tables, auth flows, payments, checkout, fulfillment, or vendor onboarding.
+- Marketplace pages, APIs, database tables, auth flows, payments, checkout, fulfillment, or vendor onboarding as part of this foundation specification. Separately approved feature specifications may authorize scoped product work.
 - Installing production dependencies before architecture decisions are approved.
 - Production infrastructure, optimization work, or future marketplace complexity that is not required for the first slice.
 
@@ -61,7 +61,7 @@ The following decisions require a separate ADR when they affect architectural bo
 - Backend runtime and API style.
 - PostgreSQL access layer and migration approach (resolved for the initial catalog in [ADR-0002](../decisions/0002-catalog-runtime-and-data-access.md)).
 - Validation and shared contract strategy.
-- Authentication and session strategy.
+- Authentication and session strategy (resolved for the credentials sign-up slice by [ADR-0003](../decisions/0003-credentials-authentication.md); other identity capabilities remain open).
 - Test runner and browser-testing approach.
 - Local infrastructure and eventual deployment boundary.
 - Module boundary strategy for the first catalog slice: single deployment vs. separate web/API packages.

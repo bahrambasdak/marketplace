@@ -17,12 +17,16 @@ export function AddUser() {
         </div>
 
         <div className="flex gap-2 p-2 border">
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" name="password" />
-
+          <label htmlFor="password">Password:</label>
+          <input type="password" id="password" name="password" />
         </div>
 
-        <button type="submit" className="border bg-amber-200 cursor-pointer p-2">Add User</button>
+        <button
+          type="submit"
+          className="border bg-amber-200 cursor-pointer p-2"
+        >
+          Add User
+        </button>
       </form>
     </div>
   );

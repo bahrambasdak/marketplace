@@ -1,22 +1,35 @@
-export default function RegisterPage() {
+import { SignUpForm } from "@/src/features/auth";
+import type { Metadata } from "next";
 
-    // const formAction = async (formData: FormData) => {
-    //     "use server";
-    //     const email = formData.get("email") as string;
-    //     const password = formData.get("password") as string;
-    //     const result = await signIn("credentials", { email, password });
-    //     if (result.error) {
-    //         return { error: result.error.message };
-    //     }
-    //     redirect("/");
-    // };
-    return (
-        <form  className="flex flex-col gap-4 w-full max-w-md mx-auto p-4">
-            <input type="text" name="name" placeholder="Name" className="border border-gray-300 rounded-md p-2" />
-            <input type="email" name="email" placeholder="Email" className="border border-gray-300 rounded-md p-2" />
-            <input type="password" name="password" placeholder="Password" className="border border-gray-300 rounded-md p-2" />
-            <button type="submit" className="bg-blue-500 text-white rounded-md p-2">Register</button>
-            
-        </form>
-    );
+export const metadata: Metadata = {
+  title: "Create an account | Marketplace",
+  description: "Create an account to get started with the marketplace.",
+};
+
+export default function SignUpPage() {
+  return (
+    <section
+      aria-labelledby="sign-up-page-title"
+      className="flex min-h-[calc(100svh-8rem)] items-center justify-center px-4 py-10"
+    >
+      <div className="grid w-full max-w-5xl items-center gap-8 md:grid-cols-2 md:gap-14">
+        <div className="space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
+            Marketplace
+          </p>
+          <h1
+            id="sign-up-page-title"
+            className="text-3xl font-semibold tracking-tight sm:text-4xl"
+          >
+            Start with an account that is yours.
+          </h1>
+          <p className="max-w-prose text-muted-foreground">
+            Create an account to continue. Your details stay protected and are
+            used to sign you in securely.
+          </p>
+        </div>
+        <SignUpForm />
+      </div>
+    </section>
+  );
 }

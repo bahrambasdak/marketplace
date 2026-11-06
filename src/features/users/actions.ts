@@ -1,25 +1,45 @@
 "use server"
 
+import { auth } from "@/src/auth";
 import { prisma } from "@/src/lib/prisma";
+import { createUserSchema } from "./schemas";
+import { createUser } from "./service";
 
 export async function getUsers() {
-  if(prisma.user === undefined) {
-    throw new Error("Prisma client is not initialized");
+  const session = await auth();
+  const email = session?.user?.email;
+
+  if (!email) {
+    throw new Error("Authentication is required to read user data.");
   }
-  const users = await prisma.user.findMany();
-  return users;
+
+  const user = await prisma.user.findUnique({
+    where: { email },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  return user ? [user] : [];
 }
 
 export async function addUser(formData: FormData) {
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const session = await auth();
+  if (!session?.user) {
+    throw new Error("Authentication is required to add a user.");
+  }
 
-  await prisma.user.create({
-    data: {
-      name,
-      email,
-      password,
-    },
+  const parsedInput = createUserSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
   });
+
+  if (!parsedInput.success) {
+    throw new Error("Enter valid account details.");
+  }
+
+  await createUser(parsedInput.data);
 }
