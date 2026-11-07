@@ -18,3 +18,10 @@ limiting remains required before public production rollout.
 **Practical takeaway:** keep hashing and credential comparison server-only,
 share the validation policy across every user-creation path, and return only
 the identity fields each caller needs.
+
+## Debugging lesson (2026-11-07)
+
+The sign-up action bypassed `createUser` and wrote the submitted password
+directly to Prisma. Credential verification correctly accepts only bcrypt
+hashes, so those new accounts could not sign in. Route registration through
+the shared user-creation service; never add plaintext fallback verification.

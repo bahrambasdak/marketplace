@@ -5,7 +5,6 @@ import { signIn } from '@/src/auth';
 import { AuthError } from 'next-auth';
 import { signUpSchema, type SignInInput } from './schemas';
 import { createUser } from "../users/service";
-import { prisma } from "@/src/lib/prisma";
 
 export async function signInAction(
   _prevState: SignInInput,
@@ -42,19 +41,7 @@ export async function signUpAction(formData: FormData) {
   }
 
   try {
-    // await createUser(parsedInput.data);
-      await prisma.user.create({
-        data: {
-          name: parsedInput.data.name,
-          email: parsedInput.data.email,
-          password: parsedInput.data.password ,
-        },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-        },
-      });
+    await createUser(parsedInput.data);
   } catch (error) {
     if (
       error instanceof Prisma.PrismaClientKnownRequestError &&
