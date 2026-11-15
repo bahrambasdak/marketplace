@@ -25,6 +25,8 @@ the application without exposing credentials or account data.
 - Verify credentials against those hashes and establish an Auth.js JWT session.
 - Redirect successful sign-ups to the fixed `/dashboard` route.
 - Provide a protected, minimal dashboard landing page.
+- Provide a signed-in user a server-backed sign-out control that clears the
+  Auth.js session and redirects to `/sign-in`.
 - Ensure all existing password-writing code uses the same validation and
   hashing policy and never returns password hashes to the browser.
 
@@ -33,6 +35,7 @@ the application without exposing credentials or account data.
 - Email verification, password recovery, OAuth, MFA, account deletion, and
   account/profile management.
 - Roles, vendor onboarding, and authorization beyond the protected dashboard.
+- Session revocation across devices or immediate JWT revocation.
 - Adding a new database model, migration, authentication provider, or package.
 - Implementing a distributed rate limiter in this slice.
 

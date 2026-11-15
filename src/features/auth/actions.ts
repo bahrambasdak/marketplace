@@ -1,10 +1,14 @@
 'use server';
 
 import { Prisma } from "@prisma/client";
-import { signIn } from '@/src/auth';
+import { signIn, signOut } from '@/src/auth';
 import { AuthError } from 'next-auth';
 import { signUpSchema, type SignInInput } from './schemas';
 import { createUser } from "../users/service";
+
+export async function signOutAction() {
+  await signOut({ redirectTo: "/sign-in" });
+}
 
 export async function signInAction(
   _prevState: SignInInput,

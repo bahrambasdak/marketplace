@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 
 import { auth } from "@/src/auth";
+import { Button } from "@/components/ui/button";
+import { signOutAction } from "@/src/features/auth/actions";
 
 export const metadata: Metadata = {
   title: "Dashboard | Marketplace",
@@ -22,6 +24,11 @@ export default async function DashboardPage() {
       <p className="text-muted-foreground">
         You are signed in and ready to continue.
       </p>
+      <form action={signOutAction}>
+        <Button type="submit" variant="outline">
+          Sign out
+        </Button>
+      </form>
     </section>
   );
 }
