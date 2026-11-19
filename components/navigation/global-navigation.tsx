@@ -2,8 +2,9 @@
 
 import React, { useRef, useState, type KeyboardEvent } from "react";
 import Link from "next/link";
-import { Menu, Store, X } from "lucide-react";
+import { LogOut, Menu, Store, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { signOutAction } from "@/src/features/auth/actions";
 import {
   getActiveNavigationLink,
   isNavigationLinkActive,
@@ -14,6 +15,17 @@ type GlobalNavigationProps = {
   placement: "desktop" | "mobile";
 };
 
+function SignOutControl() {
+  return (
+    <form action={signOutAction}>
+      <button className="sidebar-link sidebar-action-button" type="submit">
+        <LogOut aria-hidden="true" />
+        <span>Sign out</span>
+      </button>
+    </form>
+  );
+}
+
 export function GlobalNavigation({ placement }: GlobalNavigationProps) {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,23 +33,26 @@ export function GlobalNavigation({ placement }: GlobalNavigationProps) {
 
   if (placement === "desktop") {
     return (
-      <nav aria-label="Primary navigation">
-        {navigationLinks.map(({ id, label, href, icon: Icon }) => {
-          const isActive = isNavigationLinkActive(pathname, href);
+      <>
+        <nav aria-label="Primary navigation">
+          {navigationLinks.map(({ id, label, href, icon: Icon }) => {
+            const isActive = isNavigationLinkActive(pathname, href);
 
-          return (
-            <Link
-              key={id}
-              className="sidebar-link"
-              href={href}
-              aria-current={isActive ? "page" : undefined}
-            >
-              <Icon aria-hidden="true" />
-              <span>{label}</span>
-            </Link>
-          );
-        })}
-      </nav>
+            return (
+              <Link
+                key={id}
+                className="sidebar-link"
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+              >
+                <Icon aria-hidden="true" />
+                <span>{label}</span>
+              </Link>
+            );
+          })}
+        </nav>
+        <SignOutControl />
+      </>
     );
   }
 
@@ -102,6 +117,7 @@ export function GlobalNavigation({ placement }: GlobalNavigationProps) {
             );
           })}
         </nav>
+        <SignOutControl />
       </div>
     </div>
   );

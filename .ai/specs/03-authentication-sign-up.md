@@ -25,8 +25,9 @@ the application without exposing credentials or account data.
 - Verify credentials against those hashes and establish an Auth.js JWT session.
 - Redirect successful sign-ups to the fixed `/dashboard` route.
 - Provide a protected, minimal dashboard landing page.
-- Provide a signed-in user a server-backed sign-out control that clears the
-  Auth.js session and redirects to `/sign-in`.
+- Provide dashboard and global-navigation sign-out controls that clear the
+  Auth.js session and redirect to `/sign-in`. The global control is visible
+  regardless of session state.
 - Ensure all existing password-writing code uses the same validation and
   hashing policy and never returns password hashes to the browser.
 
@@ -78,6 +79,8 @@ verification is prohibited.
    accepted.
 9. A partial failure after account creation reports that the account exists
    but automatic sign-in failed, without attempting to create a duplicate.
+10. The shared desktop and mobile navigation exposes the existing server-backed
+    sign-out action to both signed-in and signed-out visitors.
 
 ## Data Model
 
@@ -98,6 +101,7 @@ record.
 - Preserve keyboard operation and use responsive layout within the existing
   application shell.
 - Provide a link to the sign-in page.
+- Keep the sign-out action available in both desktop and mobile navigation.
 
 ## Backend Requirements
 
@@ -180,6 +184,8 @@ record.
 - [ ] Persisted passwords are hashes and cannot be returned to the browser.
 - [ ] Successful registration signs in and reaches the protected dashboard.
 - [ ] Invalid, duplicate, and failed requests do not create an unsafe session.
+- [ ] Dashboard and global-navigation sign-out controls clear the session and
+      redirect to `/sign-in`.
 - [ ] The user flow is keyboard accessible and responsive.
 - [ ] Required static checks pass and remaining production security gates are
   documented.
